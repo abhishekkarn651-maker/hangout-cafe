@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hangout Cafe – Fresh Food, Great Coffee & Beautiful Moments. Visit us for handcrafted snacks, premium coffee, and an unforgettable café experience." />
+  <meta name="keywords" content="Hangout Cafe, café, coffee, burgers, pizza, snacks, drinks, desserts, restaurant" />
+  <meta property="og:title" content="Hangout Cafe – Fresh Food & Great Coffee" />
+  <meta property="og:description" content="Taste handcrafted snacks made with fresh ingredients, served with love at Hangout Cafe." />
+  <title>Hangout Cafe – Fresh Food • Great Coffee • Beautiful Moments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo" id="nav-logo-link">
+        <div class="logo-icon">☕</div>
+        <div class="logo-text">
+          <span class="logo-name">Hangout</span>
+          <span class="logo-cafe">Cafe</span>
+        </div>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="nav-link active" id="nav-home">Home</a></li>
+        <li><a href="#about" class="nav-link" id="nav-about">About</a></li>
+        <li><a href="#menu" class="nav-link" id="nav-menu">Menu</a></li>
+        <li><a href="#gallery" class="nav-link" id="nav-gallery">Gallery</a></li>
+        <li><a href="#offers" class="nav-link" id="nav-offers">Offers</a></li>
+        <li><a href="#contact" class="nav-link" id="nav-contact">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO SLIDER ===== -->
+  <section class="hero" id="home">
+    <div class="slider-container" id="slider-container">
+
+      <div class="slide active" id="slide-1">
+        <div class="slide-bg" style="background-image: url('images/hero1.png')"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <span class="slide-badge reveal-up">Est. 2020</span>
+          <h1 class="slide-title reveal-up">Welcome to<br /><em>Hangout Cafe</em></h1>
+          <p class="slide-subtitle reveal-up">Fresh Food &nbsp;•&nbsp; Great Coffee &nbsp;•&nbsp; Beautiful Moments</p>
+          <a href="#menu" class="btn btn-primary reveal-up" id="hero-btn-1">View Menu</a>
+        </div>
+      </div>
+
+      <div class="slide" id="slide-2">
+        <div class="slide-bg" style="background-image: url('images/hero2.png')"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <span class="slide-badge reveal-up">Handcrafted</span>
+          <h1 class="slide-title reveal-up">Every Bite<br /><em>Tells a Story</em></h1>
+          <p class="slide-subtitle reveal-up">Taste handcrafted snacks made with fresh ingredients<br />and served with love.</p>
+          <a href="#menu" class="btn btn-primary reveal-up" id="hero-btn-2">Explore Our Menu</a>
+        </div>
+      </div>
+
+      <div class="slide" id="slide-3">
+        <div class="slide-bg" style="background-image: url('images/hero3.png')"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <span class="slide-badge reveal-up">Good Vibes</span>
+          <h1 class="slide-title reveal-up">Where Good Food Meets<br /><em>Great Memories</em></h1>
+          <p class="slide-subtitle reveal-up">Relax, connect, and create unforgettable moments<br />with your friends and family.</p>
+          <a href="#contact" class="btn btn-primary reveal-up" id="hero-btn-3">Visit Hangout Cafe</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Arrows -->
+    <button class="slider-arrow slider-prev" id="slider-prev" aria-label="Previous slide">&#8249;</button>
+    <button class="slider-arrow slider-next" id="slider-next" aria-label="Next slide">&#8250;</button>
+
+    <!-- Dots -->
+    <div class="slider-dots" id="slider-dots">
+      <button class="dot active" id="dot-0" aria-label="Slide 1"></button>
+      <button class="dot" id="dot-1" aria-label="Slide 2"></button>
+      <button class="dot" id="dot-2" aria-label="Slide 3"></button>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image-wrap scroll-reveal">
+          <div class="about-img-frame">
+            <img src="images/about.png" alt="Inside Hangout Cafe – warm cozy atmosphere" class="about-img" id="about-image" />
+            <div class="about-badge-float">
+              <span class="badge-number">5+</span>
+              <span class="badge-label">Years of<br />Love</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-content scroll-reveal">
+          <span class="section-eyebrow">Our Story</span>
+          <h2 class="section-title">A Place Where Every<br />Cup Feels Like Home</h2>
+          <p class="about-text">Hangout Cafe was born from a simple dream — to create a space where people can slow down, savour good food, and enjoy great company. Nestled in the heart of the city, we've crafted an environment that blends warmth, creativity, and community.</p>
+          <p class="about-text">From our artisan coffee brewed fresh every morning to our hand-prepared snacks made with the finest local ingredients, every detail at Hangout Cafe is designed with love. Come as a stranger, leave as family.</p>
+          <div class="about-stats">
+            <div class="stat-item">
+              <span class="stat-number">50+</span>
+              <span class="stat-label">Menu Items</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Happy Guests/Day</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Fresh Ingredients</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MENU ===== -->
+  <section class="menu section" id="menu">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <span class="section-eyebrow">What We Serve</span>
+        <h2 class="section-title">Our Delicious Menu</h2>
+        <p class="section-subtitle">From sizzling burgers to artisan coffee, every item is crafted to delight your senses.</p>
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="menu-tabs scroll-reveal" id="menu-tabs" role="tablist">
+        <button class="tab-btn active" id="tab-burgers" data-category="burgers" role="tab" aria-selected="true">🍔 Burgers</button>
+        <button class="tab-btn" id="tab-pizza" data-category="pizza" role="tab" aria-selected="false">🍕 Pizza</button>
+        <button class="tab-btn" id="tab-sandwiches" data-category="sandwiches" role="tab" aria-selected="false">🥪 Sandwiches</button>
+        <button class="tab-btn" id="tab-fries" data-category="fries" role="tab" aria-selected="false">🍟 Fries</button>
+        <button class="tab-btn" id="tab-coffee" data-category="coffee" role="tab" aria-selected="false">☕ Coffee</button>
+        <button class="tab-btn" id="tab-shakes" data-category="shakes" role="tab" aria-selected="false">🥤 Shakes</button>
+        <button class="tab-btn" id="tab-desserts" data-category="desserts" role="tab" aria-selected="false">🍰 Desserts</button>
+      </div>
+
+      <!-- Menu Cards Grid -->
+      <div class="menu-grid" id="menu-grid">
+
+        <!-- BURGERS -->
+        <div class="menu-card scroll-reveal" data-category="burgers">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_burger.png" alt="Classic Smash Burger" class="menu-card-img" />
+            <span class="menu-tag">Bestseller</span>
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Classic Smash Burger</h3>
+            <p class="menu-item-desc">Crispy smashed patty, cheddar cheese, caramelised onions & secret sauce.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹149</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card scroll-reveal" data-category="burgers">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_burger.png" alt="Crispy Chicken Burger" class="menu-card-img" />
+            <span class="menu-tag spicy">🌶 Spicy</span>
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Crispy Chicken Burger</h3>
+            <p class="menu-item-desc">Juicy fried chicken fillet, jalapeños, coleslaw & smoky sriracha mayo.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹169</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card scroll-reveal" data-category="burgers">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_burger.png" alt="Double Stack Burger" class="menu-card-img" />
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Double Stack Burger</h3>
+            <p class="menu-item-desc">Two beef patties, double cheese, lettuce, tomato & tangy pickles.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹199</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PIZZA -->
+        <div class="menu-card scroll-reveal" data-category="pizza" style="display:none">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_pizza.png" alt="Margherita Pizza" class="menu-card-img" />
+            <span class="menu-tag">Classic</span>
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Margherita Pizza</h3>
+            <p class="menu-item-desc">Rich tomato base, fresh mozzarella, basil & extra virgin olive oil.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹179</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card scroll-reveal" data-category="pizza" style="display:none">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_pizza.png" alt="Paneer BBQ Pizza" class="menu-card-img" />
+            <span class="menu-tag">Veg</span>
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Paneer BBQ Pizza</h3>
+            <p class="menu-item-desc">Smoky BBQ sauce, tender paneer, capsicum, onion & melted cheese.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹199</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card scroll-reveal" data-category="pizza" style="display:none">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_pizza.png" alt="Chicken Tikka Pizza" class="menu-card-img" />
+            <span class="menu-tag spicy">🌶 Spicy</span>
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Chicken Tikka Pizza</h3>
+            <p class="menu-item-desc">Marinated tikka chicken, peppers, onions & a spiced tomato base.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹219</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SANDWICHES -->
+        <div class="menu-card scroll-reveal" data-category="sandwiches" style="display:none">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_sandwich.png" alt="Grilled Club Sandwich" class="menu-card-img" />
+            <span class="menu-tag">Bestseller</span>
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Grilled Club Sandwich</h3>
+            <p class="menu-item-desc">Chicken, egg, cheese, fresh veggies & mayo on toasted bread.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹129</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card scroll-reveal" data-category="sandwiches" style="display:none">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_sandwich.png" alt="Veggie Delight Sandwich" class="menu-card-img" />
+            <span class="menu-tag">Veg</span>
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Veggie Delight Sandwich</h3>
+            <p class="menu-item-desc">Crispy paneer, avocado, cucumber, tomato & herb spread.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹109</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FRIES -->
+        <div class="menu-card scroll-reveal" data-category="fries" style="display:none">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_fries.png" alt="Classic Salted Fries" class="menu-card-img" />
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Classic Salted Fries</h3>
+            <p class="menu-item-desc">Golden crispy fries, lightly salted & served with ketchup.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹69</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card scroll-reveal" data-category="fries" style="display:none">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_fries.png" alt="Peri Peri Fries" class="menu-card-img" />
+            <span class="menu-tag spicy">🌶 Spicy</span>
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Peri Peri Fries</h3>
+            <p class="menu-item-desc">Loaded with fiery peri-peri seasoning & served with garlic dip.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹89</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card scroll-reveal" data-category="fries" style="display:none">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_fries.png" alt="Cheese Loaded Fries" class="menu-card-img" />
+            <span class="menu-tag">Indulgent</span>
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Cheese Loaded Fries</h3>
+            <p class="menu-item-desc">Crispy waffle fries smothered in warm cheddar cheese sauce.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹109</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- COFFEE -->
+        <div class="menu-card scroll-reveal" data-category="coffee" style="display:none">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_coffee.png" alt="Signature Latte" class="menu-card-img" />
+            <span class="menu-tag">Signature</span>
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Signature Latte</h3>
+            <p class="menu-item-desc">Double espresso, velvety steamed milk & beautiful latte art.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹99</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card scroll-reveal" data-category="coffee" style="display:none">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_coffee.png" alt="Cold Brew Coffee" class="menu-card-img" />
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Cold Brew Coffee</h3>
+            <p class="menu-item-desc">Slow-steeped for 24 hours, served over ice with a hint of vanilla.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹119</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card scroll-reveal" data-category="coffee" style="display:none">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_coffee.png" alt="Caramel Macchiato" class="menu-card-img" />
+            <span class="menu-tag">Popular</span>
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Caramel Macchiato</h3>
+            <p class="menu-item-desc">Espresso layered over milk foam with warm caramel drizzle.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹129</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SHAKES -->
+        <div class="menu-card scroll-reveal" data-category="shakes" style="display:none">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_shake.png" alt="Chocolate Fudge Shake" class="menu-card-img" />
+            <span class="menu-tag">Bestseller</span>
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Chocolate Fudge Shake</h3>
+            <p class="menu-item-desc">Rich Belgian chocolate blended thick with whipped cream & brownie crumbles.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹149</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card scroll-reveal" data-category="shakes" style="display:none">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_shake.png" alt="Oreo Cookie Shake" class="menu-card-img" />
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Oreo Cookie Shake</h3>
+            <p class="menu-item-desc">Creamy vanilla milkshake blended with crushed Oreos & cookie crumble top.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹159</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card scroll-reveal" data-category="shakes" style="display:none">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_shake.png" alt="Strawberry Dream Shake" class="menu-card-img" />
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Strawberry Dream Shake</h3>
+            <p class="menu-item-desc">Fresh strawberries blended with ice cream & topped with whipped cream.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹139</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DESSERTS -->
+        <div class="menu-card scroll-reveal" data-category="desserts" style="display:none">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_dessert.png" alt="Chocolate Lava Cake" class="menu-card-img" />
+            <span class="menu-tag">Must Try</span>
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Chocolate Lava Cake</h3>
+            <p class="menu-item-desc">Warm gooey centre, dusted with sugar & served with vanilla ice cream.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹129</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card scroll-reveal" data-category="desserts" style="display:none">
+          <div class="menu-card-img-wrap">
+            <img src="images/menu_dessert.png" alt="Nutella Brownie" class="menu-card-img" />
+          </div>
+          <div class="menu-card-body">
+            <h3 class="menu-item-name">Nutella Brownie</h3>
+            <p class="menu-item-desc">Fudgy dark chocolate brownie swirled with creamy Nutella & walnuts.</p>
+            <div class="menu-card-footer">
+              <span class="menu-price">₹99</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="gallery section" id="gallery">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <span class="section-eyebrow">Visual Stories</span>
+        <h2 class="section-title">Moments at Hangout Cafe</h2>
+        <p class="section-subtitle">A glimpse into our world of flavours, warmth, and good company.</p>
+      </div>
+      <div class="gallery-grid scroll-reveal">
+        <div class="gallery-item large" id="gal-1" tabindex="0" role="button" aria-label="View café ambience photo" data-src="images/gallery_ambience.png">
+          <img src="images/gallery_ambience.png" alt="Cozy café ambience with warm Edison lights" />
+          <div class="gallery-overlay"><span class="gallery-zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item" id="gal-2" tabindex="0" role="button" aria-label="View specialty drinks photo" data-src="images/gallery_drinks.png">
+          <img src="images/gallery_drinks.png" alt="Colorful specialty drinks" />
+          <div class="gallery-overlay"><span class="gallery-zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item tall" id="gal-3" tabindex="0" role="button" aria-label="View barista crafting coffee" data-src="images/gallery_barista.png">
+          <img src="images/gallery_barista.png" alt="Barista crafting latte art" />
+          <div class="gallery-overlay"><span class="gallery-zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item" id="gal-4" tabindex="0" role="button" aria-label="View café snacks platter" data-src="images/gallery_snacks.png">
+          <img src="images/gallery_snacks.png" alt="Delicious café snacks platter" />
+          <div class="gallery-overlay"><span class="gallery-zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item" id="gal-5" tabindex="0" role="button" aria-label="View café interior" data-src="images/hero1.png">
+          <img src="images/hero1.png" alt="Beautiful café interior" />
+          <div class="gallery-overlay"><span class="gallery-zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item" id="gal-6" tabindex="0" role="button" aria-label="View food photography" data-src="images/hero2.png">
+          <img src="images/hero2.png" alt="Artisan café food" />
+          <div class="gallery-overlay"><span class="gallery-zoom">🔍</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">✕</button>
+      <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous image">&#8249;</button>
+      <button class="lightbox-next" id="lightbox-next" aria-label="Next image">&#8250;</button>
+      <div class="lightbox-content">
+        <img src="" alt="" id="lightbox-img" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== OFFERS ===== -->
+  <section class="offers section" id="offers">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <span class="section-eyebrow">Special Deals</span>
+        <h2 class="section-title">Irresistible Offers</h2>
+        <p class="section-subtitle">More flavour, more savings — because you deserve the best.</p>
+      </div>
+      <div class="offers-grid scroll-reveal">
+
+        <div class="offer-card" id="offer-combo">
+          <div class="offer-img-wrap">
+            <img src="images/offer_combo.png" alt="Combo Deal – Burger, Fries and Drink" class="offer-img" />
+          </div>
+          <div class="offer-body">
+            <div class="offer-badge">🔥 Hot Deal</div>
+            <h3 class="offer-title">Hangout Combo Deal</h3>
+            <p class="offer-desc">Pick any Burger + Regular Fries + Soft Drink for one unbeatable price. The perfect meal deal, every day!</p>
+            <div class="offer-price-wrap">
+              <span class="offer-original">₹350</span>
+              <span class="offer-price">₹249</span>
+            </div>
+            <div class="offer-savings">You save ₹101!</div>
+          </div>
+        </div>
+
+        <div class="offer-card featured" id="offer-weekend">
+          <div class="offer-img-wrap">
+            <img src="images/gallery_snacks.png" alt="Weekend Platter Offer" class="offer-img" />
+          </div>
+          <div class="offer-body">
+            <div class="offer-badge weekend">🎉 Weekend Special</div>
+            <h3 class="offer-title">Weekend Fiesta Platter</h3>
+            <p class="offer-desc">Every Saturday & Sunday — Sharing platter with 4 snacks + 2 shakes + 1 Pizza. Perfect for groups and family outings!</p>
+            <div class="offer-price-wrap">
+              <span class="offer-original">₹799</span>
+              <span class="offer-price">₹549</span>
+            </div>
+            <div class="offer-savings">You save ₹250!</div>
+          </div>
+        </div>
+
+        <div class="offer-card" id="offer-student">
+          <div class="offer-img-wrap">
+            <img src="images/gallery_drinks.png" alt="Student Discount" class="offer-img" />
+          </div>
+          <div class="offer-body">
+            <div class="offer-badge student">🎓 Student Love</div>
+            <h3 class="offer-title">Student Discount</h3>
+            <p class="offer-desc">Show your valid student ID and get a flat 20% off on your entire bill. Because good food shouldn't break the budget!</p>
+            <div class="offer-price-wrap">
+              <span class="offer-price" style="font-size:2rem">20% OFF</span>
+            </div>
+            <div class="offer-savings">Valid on all menu items · Mon–Fri</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <span class="section-eyebrow">Find Us</span>
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">We'd love to hear from you. Drop by or send us a message!</p>
+      </div>
+      <div class="contact-grid">
+        <!-- Info + Map -->
+        <div class="contact-info scroll-reveal">
+          <div class="info-cards">
+            <div class="info-card" id="contact-address">
+              <div class="info-icon">📍</div>
+              <div>
+                <h4>Our Address</h4>
+                <p>123 Coffee Lane, MG Road,<br />Bengaluru, Karnataka – 560001</p>
+              </div>
+            </div>
+            <div class="info-card" id="contact-phone">
+              <div class="info-icon">📞</div>
+              <div>
+                <h4>Phone Number</h4>
+                <p>+91 98765 43210<br />+91 91234 56789</p>
+              </div>
+            </div>
+            <div class="info-card" id="contact-hours">
+              <div class="info-icon">🕐</div>
+              <div>
+                <h4>Opening Hours</h4>
+                <p>Mon – Fri: 9:00 AM – 10:00 PM<br />Sat – Sun: 8:00 AM – 11:00 PM</p>
+              </div>
+            </div>
+          </div>
+          <!-- Google Maps Placeholder -->
+          <div class="map-placeholder" id="map-placeholder">
+            <div class="map-pin-wrap">
+              <div class="map-pin">📍</div>
+              <p class="map-label">Hangout Cafe – MG Road, Bengaluru</p>
+              <p class="map-sublabel">Replace this with an embedded Google Maps iframe</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-wrap scroll-reveal">
+          <form class="contact-form" id="contact-form" novalidate>
+            <h3 class="form-title">Send Us a Message</h3>
+            <div class="form-group">
+              <label for="form-name">Your Name</label>
+              <input type="text" id="form-name" name="name" placeholder="Enter your full name" required autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="form-phone">Phone Number</label>
+              <input type="tel" id="form-phone" name="phone" placeholder="Enter your phone number" autocomplete="tel" />
+            </div>
+            <div class="form-group">
+              <label for="form-message">Message</label>
+              <textarea id="form-message" name="message" rows="5" placeholder="Write your message here…" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="form-submit-btn">Send Message ✉️</button>
+            <div class="form-success" id="form-success" aria-live="polite">
+              ✅ Thank you! Your message has been sent. We'll get back to you soon.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="footer">
+    <div class="footer-top">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="logo-icon">☕</div>
+            <div class="logo-text">
+              <span class="logo-name">Hangout</span>
+              <span class="logo-cafe">Cafe</span>
+            </div>
+          </div>
+          <p class="footer-tagline">Fresh Food • Great Coffee<br />Beautiful Moments</p>
+          <div class="social-links" id="social-links">
+            <a href="#" class="social-btn instagram" id="social-instagram" aria-label="Follow us on Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" class="social-btn facebook" id="social-facebook" aria-label="Follow us on Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" class="social-btn whatsapp" id="social-whatsapp" aria-label="Chat with us on WhatsApp">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home" id="footer-link-home">Home</a></li>
+            <li><a href="#about" id="footer-link-about">About Us</a></li>
+            <li><a href="#menu" id="footer-link-menu">Menu</a></li>
+            <li><a href="#gallery" id="footer-link-gallery">Gallery</a></li>
+            <li><a href="#offers" id="footer-link-offers">Offers</a></li>
+            <li><a href="#contact" id="footer-link-contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Contact Info</h4>
+          <ul class="footer-contact-list">
+            <li>📍 123 Coffee Lane, MG Road,<br />Bengaluru – 560001</li>
+            <li>📞 +91 98765 43210</li>
+            <li>🕐 Mon–Fri: 9AM – 10PM</li>
+            <li>🕐 Sat–Sun: 8AM – 11PM</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2025 Hangout Cafe. All rights reserved. Crafted with ☕ &amp; ❤️</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
