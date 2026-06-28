@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Hangout Cafe</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Shared Admin CSS -->
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <span class="menu-icon">☕</span>
+        <span class="logo-text-admin">Hangout Admin</span>
+      </div>
+      <nav class="sidebar-menu">
+        <a class="menu-item active" data-tab="overview">
+          <span class="menu-icon">📊</span>
+          <span>Overview</span>
+        </a>
+        <a class="menu-item" data-tab="hero">
+          <span class="menu-icon">✨</span>
+          <span>Hero Manager</span>
+        </a>
+        <a class="menu-item" data-tab="about">
+          <span class="menu-icon">📖</span>
+          <span>About Section</span>
+        </a>
+        <a class="menu-item" data-tab="menu">
+          <span class="menu-icon">🍔</span>
+          <span>Menu Manager</span>
+        </a>
+        <a class="menu-item" data-tab="gallery">
+          <span class="menu-icon">📸</span>
+          <span>Gallery Manager</span>
+        </a>
+        <a class="menu-item" data-tab="offers">
+          <span class="menu-icon">🎉</span>
+          <span>Offer Manager</span>
+        </a>
+        <a class="menu-item" data-tab="contact">
+          <span class="menu-icon">📞</span>
+          <span>Contact Details</span>
+        </a>
+        <a class="menu-item" data-tab="settings">
+          <span class="menu-icon">⚙️</span>
+          <span>Settings</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar" id="profile-avatar">A</div>
+          <div class="user-info">
+            <div class="user-name">Admin User</div>
+            <div class="user-role" id="profile-email">admin@hangoutcafe.com</div>
+          </div>
+        </div>
+        <button class="btn-secondary-admin" style="width: 100%; justify-content: center; padding: 10px;" id="btn-sidebar-logout">
+          <span>Logout ↩️</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="main-wrapper">
+      <header class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <!-- Mobile Sidebar Toggle -->
+          <button class="btn-secondary-admin" id="mobile-toggle" style="display: none; padding: 8px 12px; font-size: 1.2rem;">
+            ☰
+          </button>
+          <h2 class="header-title" id="page-title">Overview</h2>
+        </div>
+        <div class="header-actions">
+          <span class="badge success" id="status-indicator">● Database Connected</span>
+          <button class="btn-primary-admin" style="padding: 8px 16px; font-size: 0.85rem;" id="btn-refresh-global">
+            <span>Refresh ⟳</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+
+        <!-- ==================== TAB: OVERVIEW ==================== -->
+        <section class="tab-content active" id="tab-overview">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon-wrap">🍔</div>
+              <div class="stat-info">
+                <span class="stat-value" id="stat-menu-count">0</span>
+                <span class="stat-label">Menu Items</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon-wrap">📸</div>
+              <div class="stat-info">
+                <span class="stat-value" id="stat-gallery-count">0</span>
+                <span class="stat-label">Gallery Images</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon-wrap">🎉</div>
+              <div class="stat-info">
+                <span class="stat-value" id="stat-offers-count">0</span>
+                <span class="stat-label">Active Offers</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon-wrap">🌐</div>
+              <div class="stat-info">
+                <span class="stat-value" style="font-size: 1.3rem; margin-top: 5px;">Active</span>
+                <span class="stat-label">Website Status</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="widget-card" style="grid-column: span 1;">
+              <h3 class="widget-title">System Information</h3>
+              <div style="display: flex; flex-direction: column; gap: 15px; font-size: 0.95rem;">
+                <div style="display:flex; justify-content:space-between; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                  <span style="color: var(--text-secondary);">Framework</span>
+                  <span>Node.js / Express.js</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                  <span style="color: var(--text-secondary);">Database</span>
+                  <span>Supabase PostgreSQL</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                  <span style="color: var(--text-secondary);">Image Host</span>
+                  <span>Cloudinary CDN</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; padding-bottom: 0;">
+                  <span style="color: var(--text-secondary);">Last Updated</span>
+                  <span id="overview-last-updated">-</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="widget-card" style="grid-column: span 1;">
+              <h3 class="widget-title">Recent Activity</h3>
+              <div class="activity-list" id="overview-activity-list">
+                <div class="empty-state">No recent activity logged.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== TAB: HERO MANAGER ==================== -->
+        <section class="tab-content" id="tab-hero">
+          <div class="widget-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+              <div>
+                <h3 class="widget-title" style="margin-bottom: 5px;">Hero Banners / Slideshow</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Configure slide titles, subtitles, custom CTA texts, and background images.</p>
+              </div>
+              <button class="btn-primary-admin" id="btn-add-banner">
+                <span>+ Add New Slide</span>
+              </button>
+            </div>
+
+            <div class="data-table-wrapper">
+              <table class="data-table" id="banners-table">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Subtitle</th>
+                    <th>CTA Button</th>
+                    <th>Order</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="banners-table-body">
+                  <tr>
+                    <td colspan="6" class="empty-state">Loading banners...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== TAB: ABOUT SECTION ==================== -->
+        <section class="tab-content" id="tab-about">
+          <div class="form-card">
+            <h3 class="widget-title" style="margin-bottom: 20px;">Edit About Details</h3>
+            <form id="about-form">
+              <div class="form-group full-width">
+                <label for="about-desc">Description</label>
+                <textarea id="about-desc" rows="6" required placeholder="Write details about the cafe, history, goals..."></textarea>
+              </div>
+              <div class="form-group full-width">
+                <label>About Section Image</label>
+                <div class="upload-zone" id="about-upload-zone">
+                  <div class="upload-icon">📸</div>
+                  <div class="upload-text">Drag & drop image here or click to upload</div>
+                  <input type="file" class="upload-input" id="about-image-file" accept="image/*">
+                </div>
+                <div class="image-preview-container" id="about-preview-container"></div>
+              </div>
+              <button type="submit" class="btn-primary-admin" id="btn-save-about">
+                <span>Save Changes</span>
+                <div class="spinner" id="about-spinner" style="display:none; width:16px; height:16px;"></div>
+              </button>
+            </form>
+          </div>
+        </section>
+
+
+        <!-- ==================== TAB: MENU MANAGER ==================== -->
+        <section class="tab-content" id="tab-menu">
+          <div class="widget-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; margin-bottom: 20px;">
+              <h3 class="widget-title" style="margin-bottom: 0;">Manage Cafe Menu</h3>
+              <button class="btn-primary-admin" id="btn-add-menu">
+                <span>+ Add Menu Item</span>
+              </button>
+            </div>
+
+            <div class="data-table-wrapper">
+              <div class="table-header-toolbar">
+                <div class="search-input-wrap">
+                  <input type="text" id="menu-search" placeholder="Search menu by name or description...">
+                </div>
+                <select class="filter-select" id="menu-filter-category">
+                  <option value="all">All Categories</option>
+                  <option value="burgers">🍔 Burgers</option>
+                  <option value="pizza">🍕 Pizza</option>
+                  <option value="sandwiches">🥪 Sandwiches</option>
+                  <option value="fries">🍟 Fries</option>
+                  <option value="coffee">☕ Coffee</option>
+                  <option value="shakes">🥤 Shakes</option>
+                  <option value="desserts">🍰 Desserts</option>
+                </select>
+              </div>
+
+              <table class="data-table" id="menu-table">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Featured</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="menu-table-body">
+                  <tr>
+                    <td colspan="7" class="empty-state">Loading menu items...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== TAB: GALLERY MANAGER ==================== -->
+        <section class="tab-content" id="tab-gallery">
+          <div class="widget-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:15px;">
+              <div>
+                <h3 class="widget-title" style="margin-bottom: 5px;">Cafe Gallery</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Manage high-quality cafe photos displayed on the main site.</p>
+              </div>
+              <button class="btn-primary-admin" id="btn-add-gallery">
+                <span>+ Upload Gallery Photo</span>
+              </button>
+            </div>
+
+            <div class="data-table-wrapper">
+              <table class="data-table" id="gallery-table">
+                <thead>
+                  <tr>
+                    <th>Photo</th>
+                    <th>Caption</th>
+                    <th>Uploaded At</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="gallery-table-body">
+                  <tr>
+                    <td colspan="4" class="empty-state">Loading gallery items...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== TAB: OFFER MANAGER ==================== -->
+        <section class="tab-content" id="tab-offers">
+          <div class="widget-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+              <h3 class="widget-title" style="margin-bottom: 0;">Special Offers & Discounts</h3>
+              <button class="btn-primary-admin" id="btn-add-offer">
+                <span>+ Create Offer Card</span>
+              </button>
+            </div>
+
+            <div class="data-table-wrapper">
+              <table class="data-table" id="offers-table">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Offer Title</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Expiry Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="offers-table-body">
+                  <tr>
+                    <td colspan="6" class="empty-state">Loading offers...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== TAB: CONTACT DETAILS ==================== -->
+        <section class="tab-content" id="tab-contact">
+          <div class="form-card">
+            <h3 class="widget-title" style="margin-bottom: 20px;">Edit Contact details</h3>
+            <form id="contact-form-admin">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="contact-name">Cafe Name</label>
+                  <input type="text" id="contact-name" value="Hangout Cafe" required>
+                </div>
+                <div class="form-group">
+                  <label for="contact-phone">Phone Number</label>
+                  <input type="text" id="contact-phone" required>
+                </div>
+                <div class="form-group">
+                  <label for="contact-email">Email Address</label>
+                  <input type="email" id="contact-email" required>
+                </div>
+                <div class="form-group">
+                  <label for="contact-hours">Opening Hours</label>
+                  <input type="text" id="contact-hours" required placeholder="e.g. Mon-Sun: 9:00 AM - 10:00 PM">
+                </div>
+                <div class="form-group full-width">
+                  <label for="contact-address">Address</label>
+                  <input type="text" id="contact-address" required>
+                </div>
+                <div class="form-group full-width">
+                  <label for="contact-gmaps">Google Maps Iframe URL (Source Link Only)</label>
+                  <input type="text" id="contact-gmaps" placeholder="https://www.google.com/maps/embed?pb=...">
+                </div>
+                <div class="form-group">
+                  <label for="contact-instagram">Instagram URL</label>
+                  <input type="text" id="contact-instagram">
+                </div>
+                <div class="form-group">
+                  <label for="contact-facebook">Facebook URL</label>
+                  <input type="text" id="contact-facebook">
+                </div>
+                <div class="form-group">
+                  <label for="contact-whatsapp">WhatsApp Phone/Link</label>
+                  <input type="text" id="contact-whatsapp">
+                </div>
+              </div>
+              <button type="submit" class="btn-primary-admin" id="btn-save-contact" style="margin-top: 15px;">
+                <span>Save Contact Info</span>
+                <div class="spinner" id="contact-spinner" style="display:none; width:16px; height:16px;"></div>
+              </button>
+            </form>
+          </div>
+        </section>
+
+
+        <!-- ==================== TAB: SETTINGS ==================== -->
+        <section class="tab-content" id="tab-settings">
+          <div class="form-card">
+            <h3 class="widget-title" style="margin-bottom: 20px;">Profile Settings</h3>
+            <div style="margin-bottom: 30px; display:flex; align-items:center; gap:20px;">
+              <div class="user-avatar" style="width:60px; height:60px; font-size:1.8rem;" id="settings-avatar">A</div>
+              <div>
+                <h4 style="font-size:1.1rem; color:white;" id="settings-username">Admin User</h4>
+                <p style="font-size:0.85rem; color:var(--text-secondary);">Hangout Cafe Manager</p>
+              </div>
+            </div>
+
+            <h3 class="widget-title" style="margin-bottom: 20px; border-top: 1px solid var(--border); padding-top: 25px;">Change Password</h3>
+            <form id="settings-password-form">
+              <div class="form-group">
+                <label for="password-current">Current Password</label>
+                <input type="password" id="password-current" required placeholder="Enter current admin password">
+              </div>
+              <div class="form-group">
+                <label for="password-new">New Password</label>
+                <input type="password" id="password-new" required placeholder="Enter new password (min 6 characters)">
+              </div>
+              <div class="form-group">
+                <label for="password-confirm">Confirm New Password</label>
+                <input type="password" id="password-confirm" required placeholder="Confirm new password">
+              </div>
+              <button type="submit" class="btn-primary-admin" id="btn-save-password">
+                <span>Update Password</span>
+                <div class="spinner" id="settings-spinner" style="display:none; width:16px; height:16px;"></div>
+              </button>
+            </form>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+
+  <!-- ==================== MODALS LIST ==================== -->
+
+  <!-- Modal: Banner Form -->
+  <div class="modal-overlay" id="banner-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="banner-modal-title">Add Slide</h3>
+        <button class="modal-close" onclick="closeModal('banner-modal')">&times;</button>
+      </div>
+      <form id="banner-form">
+        <input type="hidden" id="banner-id">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="banner-title">Slide Title</label>
+            <input type="text" id="banner-title" placeholder="Welcome to Hangout Cafe">
+          </div>
+          <div class="form-group">
+            <label for="banner-subtitle">Slide Subtitle</label>
+            <input type="text" id="banner-subtitle" placeholder="Fresh Food & Great Coffee">
+          </div>
+          <div class="form-grid" style="margin-bottom:0;">
+            <div class="form-group">
+              <label for="banner-cta-text">CTA Button Text</label>
+              <input type="text" id="banner-cta-text" value="View Menu">
+            </div>
+            <div class="form-group">
+              <label for="banner-cta-link">CTA Button Link</label>
+              <input type="text" id="banner-cta-link" value="#menu">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="banner-order">Display Order</label>
+            <input type="number" id="banner-order" value="0" min="0">
+          </div>
+          <div class="form-group">
+            <label id="banner-file-label">Slide Image File</label>
+            <div class="upload-zone" id="banner-upload-zone">
+              <div class="upload-icon">📸</div>
+              <div class="upload-text">Click to upload slide image</div>
+              <input type="file" class="upload-input" id="banner-image-file" accept="image/*">
+            </div>
+            <div class="image-preview-container" id="banner-preview-container"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary-admin" onclick="closeModal('banner-modal')">Cancel</button>
+          <button type="submit" class="btn-primary-admin" id="btn-banner-submit">
+            <span>Save Slide</span>
+            <div class="spinner" id="banner-form-spinner" style="display:none; width:16px; height:16px;"></div>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Menu Form -->
+  <div class="modal-overlay" id="menu-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="menu-modal-title">Add Menu Item</h3>
+        <button class="modal-close" onclick="closeModal('menu-modal')">&times;</button>
+      </div>
+      <form id="menu-form">
+        <input type="hidden" id="menu-id">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="menu-item-name">Item Name</label>
+            <input type="text" id="menu-item-name" required placeholder="Double Stack Burger">
+          </div>
+          <div class="form-grid" style="margin-bottom:0;">
+            <div class="form-group">
+              <label for="menu-category">Category</label>
+              <select id="menu-category" required>
+                <option value="burgers">🍔 Burgers</option>
+                <option value="pizza">🍕 Pizza</option>
+                <option value="sandwiches">🥪 Sandwiches</option>
+                <option value="fries">🍟 Fries</option>
+                <option value="coffee">☕ Coffee</option>
+                <option value="shakes">🥤 Shakes</option>
+                <option value="desserts">🍰 Desserts</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="menu-price">Price (₹)</label>
+              <input type="number" id="menu-price" required min="0" step="0.01" placeholder="149">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="menu-description">Description</label>
+            <textarea id="menu-description" rows="3" placeholder="Describe the item, ingredients, etc."></textarea>
+          </div>
+          <div class="form-grid" style="margin-bottom:20px;">
+            <div class="form-group" style="flex-direction:row; gap:10px; align-items:center;">
+              <input type="checkbox" id="menu-available" checked style="width:20px; height:20px; cursor:pointer;">
+              <label for="menu-available" style="margin-bottom:0; cursor:pointer;">Item Available</label>
+            </div>
+            <div class="form-group" style="flex-direction:row; gap:10px; align-items:center;">
+              <input type="checkbox" id="menu-featured" style="width:20px; height:20px; cursor:pointer;">
+              <label for="menu-featured" style="margin-bottom:0; cursor:pointer;">Featured Item</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label id="menu-file-label">Item Image File</label>
+            <div class="upload-zone" id="menu-upload-zone">
+              <div class="upload-icon">📸</div>
+              <div class="upload-text">Click to upload image</div>
+              <input type="file" class="upload-input" id="menu-image-file" accept="image/*">
+            </div>
+            <div class="image-preview-container" id="menu-preview-container"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary-admin" onclick="closeModal('menu-modal')">Cancel</button>
+          <button type="submit" class="btn-primary-admin" id="btn-menu-submit">
+            <span>Save Item</span>
+            <div class="spinner" id="menu-form-spinner" style="display:none; width:16px; height:16px;"></div>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Gallery Form -->
+  <div class="modal-overlay" id="gallery-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Upload Gallery Photo</h3>
+        <button class="modal-close" onclick="closeModal('gallery-modal')">&times;</button>
+      </div>
+      <form id="gallery-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="gallery-caption">Photo Caption</label>
+            <input type="text" id="gallery-caption" placeholder="Cozy seating corner">
+          </div>
+          <div class="form-group">
+            <label>Select Photo</label>
+            <div class="upload-zone" id="gallery-upload-zone">
+              <div class="upload-icon">📸</div>
+              <div class="upload-text">Drag & drop photo here or click to select</div>
+              <input type="file" class="upload-input" id="gallery-image-file" required accept="image/*">
+            </div>
+            <div class="image-preview-container" id="gallery-preview-container"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary-admin" onclick="closeModal('gallery-modal')">Cancel</button>
+          <button type="submit" class="btn-primary-admin" id="btn-gallery-submit">
+            <span>Upload Photo</span>
+            <div class="spinner" id="gallery-form-spinner" style="display:none; width:16px; height:16px;"></div>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Offer Form -->
+  <div class="modal-overlay" id="offer-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="offer-modal-title">Create Offer</h3>
+        <button class="modal-close" onclick="closeModal('offer-modal')">&times;</button>
+      </div>
+      <form id="offer-form">
+        <input type="hidden" id="offer-id">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="offer-title">Offer Title</label>
+            <input type="text" id="offer-title" required placeholder="Hangout Combo Deal">
+          </div>
+          <div class="form-group">
+            <label for="offer-description">Description / Rules</label>
+            <textarea id="offer-description" rows="3" placeholder="Get a burger, fries, and drink for ₹249!"></textarea>
+          </div>
+          <div class="form-grid" style="margin-bottom:0;">
+            <div class="form-group">
+              <label for="offer-expiry">Expiry Date</label>
+              <input type="date" id="offer-expiry">
+            </div>
+            <div class="form-group" style="flex-direction:row; gap:10px; align-items:center; margin-top:28px;">
+              <input type="checkbox" id="offer-active" checked style="width:20px; height:20px; cursor:pointer;">
+              <label for="offer-active" style="margin-bottom:0; cursor:pointer;">Offer Active</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label id="offer-file-label">Offer Image File</label>
+            <div class="upload-zone" id="offer-upload-zone">
+              <div class="upload-icon">📸</div>
+              <div class="upload-text">Click to upload image</div>
+              <input type="file" class="upload-input" id="offer-image-file" accept="image/*">
+            </div>
+            <div class="image-preview-container" id="offer-preview-container"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary-admin" onclick="closeModal('offer-modal')">Cancel</button>
+          <button type="submit" class="btn-primary-admin" id="btn-offer-submit">
+            <span>Save Offer</span>
+            <div class="spinner" id="offer-form-spinner" style="display:none; width:16px; height:16px;"></div>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Delete Confirmation -->
+  <div class="modal-overlay" id="confirm-modal">
+    <div class="modal-card" style="max-width: 400px;">
+      <div class="modal-header" style="border-bottom: none; padding-bottom: 0;">
+        <h3 class="modal-title">Confirm Deletion</h3>
+        <button class="modal-close" onclick="closeModal('confirm-modal')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding-top: 15px;">
+        <p style="color: var(--text-secondary); font-size: 0.95rem;" id="confirm-message">Are you sure you want to delete this item? This action is permanent and cannot be undone.</p>
+      </div>
+      <div class="modal-footer" style="border-top: none;">
+        <button type="button" class="btn-secondary-admin" onclick="closeModal('confirm-modal')">Cancel</button>
+        <button type="button" class="btn-danger-admin" id="btn-confirm-delete" style="padding: 10px 20px;">Delete</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Toast Notifications Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Main JavaScript File -->
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - Hangout Cafe</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <!-- Shared Admin CSS -->
+  <link rel="stylesheet" href="css/admin.css">
+  <style>
+    /* Specific Login Layout Styles */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: radial-gradient(circle at center, #1e1e24 0%, #0d0d10 100%);
+      padding: 20px;
+    }
+    
+    .login-container {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(26, 26, 30, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 40px 30px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .login-logo {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      display: inline-block;
+      animation: rotateLogo 20s linear infinite;
+    }
+
+    @keyframes rotateLogo {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .login-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0;
+    }
+
+    .login-subtitle {
+      font-size: 0.9rem;
+      color: #8b8b9a;
+      margin-top: 5px;
+    }
+
+    .login-form .form-group {
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    .login-form label {
+      display: block;
+      font-size: 0.85rem;
+      color: #b0b0c0;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 14px 16px;
+      background: #141416;
+      border: 1px solid #2a2a30;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    .login-form input:focus {
+      outline: none;
+      border-color: #e05522;
+      box-shadow: 0 0 0 3px rgba(224, 85, 34, 0.15);
+      background: #18181c;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 14px;
+      background: #e05522;
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .btn-login:hover {
+      background: #f06633;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(224, 85, 34, 0.3);
+    }
+
+    .btn-login:active {
+      transform: translateY(0);
+    }
+
+    .btn-login:disabled {
+      background: #552718;
+      color: #a87d71;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Toast Notification Container */
+    .toast-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <div class="login-header">
+      <div class="login-logo">☕</div>
+      <h1 class="login-title">Hangout Cafe</h1>
+      <p class="login-subtitle">Admin Control Panel</p>
+    </div>
+
+    <form class="login-form" id="login-form">
+      <div class="form-group">
+        <label for="email">Admin Email</label>
+        <input type="email" id="email" required placeholder="name@hangoutcafe.com" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn-login" id="btn-login">
+        <span>Log In</span>
+        <div class="spinner" id="login-spinner" style="display: none; width: 18px; height: 18px; border-width: 2px;"></div>
+      </button>
+    </form>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Client-side Login Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const token = localStorage.getItem('admin_token');
+      if (token) {
+        // Automatically redirect to index.html if token already exists
+        window.location.href = 'index.html';
+        return;
+      }
+
+      const form = document.getElementById('login-form');
+      const btn = document.getElementById('btn-login');
+      const btnText = btn.querySelector('span');
+      const spinner = document.getElementById('login-spinner');
+      const toastContainer = document.getElementById('toast-container');
+
+      // Toast notification helper
+      const showToast = (message, type = 'success') => {
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+          <div class="toast-icon">${type === 'success' ? '✅' : '❌'}</div>
+          <div class="toast-body">${message}</div>
+        `;
+        toastContainer.appendChild(toast);
+        setTimeout(() => {
+          toast.classList.add('show');
+        }, 50);
+
+        setTimeout(() => {
+          toast.classList.remove('show');
+          setTimeout(() => toast.remove(), 400);
+        }, 3500);
+      };
+
+      const API_BASE_URL = window.location.origin.includes('5000') 
+        ? '' 
+        : 'http://localhost:5000';
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+
+        // UI Loading State
+        btn.disabled = true;
+        btnText.textContent = 'Authenticating...';
+        spinner.style.display = 'inline-block';
+
+        try {
+          const res = await fetch(`${API_BASE_URL}/api/admin/login`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+          });
+
+          const data = await res.json();
+
+          if (res.ok && data.success) {
+            showToast('Login successful! Redirecting...', 'success');
+            
+            // Store token and details securely
+            localStorage.setItem('admin_token', data.data.token);
+            localStorage.setItem('admin_email', data.data.admin.email);
+            
+            setTimeout(() => {
+              window.location.href = 'index.html';
+            }, 1000);
+          } else {
+            showToast(data.message || 'Invalid credentials. Please try again.', 'error');
+            btn.disabled = false;
+            btnText.textContent = 'Log In';
+            spinner.style.display = 'none';
+          }
+        } catch (err) {
+          console.error(err);
+          showToast('Server connection failed. Is the backend running?', 'error');
+          btn.disabled = false;
+          btnText.textContent = 'Log In';
+          spinner.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+-- Database schema script for Supabase PostgreSQL
+-- Copy and execute this in the Supabase SQL Editor
+
+-- 1. Admins Table
+CREATE TABLE IF NOT EXISTS admins (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    email TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT now() NOT NULL
+);
+
+-- 2. Banners Table
+CREATE TABLE IF NOT EXISTS banners (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    title TEXT,
+    subtitle TEXT,
+    image TEXT NOT NULL,
+    cta_text TEXT DEFAULT 'View Menu' NOT NULL,
+    cta_link TEXT DEFAULT '#menu' NOT NULL,
+    display_order INTEGER DEFAULT 0 NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT now() NOT NULL
+);
+
+-- 3. Menu Table
+CREATE TABLE IF NOT EXISTS menu (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    category TEXT NOT NULL,
+    item_name TEXT NOT NULL,
+    description TEXT,
+    price NUMERIC NOT NULL,
+    image TEXT NOT NULL,
+    is_available BOOLEAN DEFAULT true NOT NULL,
+    is_featured BOOLEAN DEFAULT false NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT now() NOT NULL
+);
+
+-- 4. Gallery Table
+CREATE TABLE IF NOT EXISTS gallery (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    image TEXT NOT NULL,
+    caption TEXT,
+    created_at TIMESTAMPTZ DEFAULT now() NOT NULL
+);
+
+-- 5. Offers Table
+CREATE TABLE IF NOT EXISTS offers (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    title TEXT NOT NULL,
+    description TEXT,
+    image TEXT NOT NULL,
+    expiry_date TIMESTAMPTZ,
+    is_active BOOLEAN DEFAULT true NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT now() NOT NULL
+);
+
+-- 6. About Table (Singleton)
+CREATE TABLE IF NOT EXISTS about (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    description TEXT NOT NULL,
+    image TEXT,
+    updated_at TIMESTAMPTZ DEFAULT now() NOT NULL
+);
+
+-- 7. Contact Table (Singleton)
+CREATE TABLE IF NOT EXISTS contact (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    address TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    email TEXT NOT NULL,
+    opening_hours TEXT NOT NULL,
+    instagram TEXT,
+    facebook TEXT,
+    whatsapp TEXT,
+    google_maps_link TEXT,
+    updated_at TIMESTAMPTZ DEFAULT now() NOT NULL
+);
