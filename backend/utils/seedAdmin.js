@@ -28,12 +28,6 @@ const seedAdmin = async () => {
       process.exit(0);
     }
 
-    // 2. Check if any admin exists at all (only one admin is allowed)
-    if (existingAdmins && existingAdmins.length > 0) {
-      console.log(`An admin account already exists (${existingAdmins[0].email}). Only one admin is allowed. Seeding skipped.`);
-      process.exit(0);
-    }
-
     // 3. Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -43,8 +37,10 @@ const seedAdmin = async () => {
       .from('admins')
       .insert([
         {
+          name: 'Owner',
           email,
-          password: hashedPassword
+          password: hashedPassword,
+          role: 'owner'
         }
       ])
       .select();

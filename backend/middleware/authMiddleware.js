@@ -19,7 +19,7 @@ const protect = async (req, res, next) => {
       // Get admin from Supabase admins table
       const { data: admin, error } = await supabase
         .from('admins')
-        .select('id, email')
+        .select('id, name, email, role')
         .eq('id', decoded.id)
         .single();
 
@@ -53,4 +53,16 @@ const protect = async (req, res, next) => {
   }
 };
 
-module.exports = { protect };
+const isOwner = (req, res, next) => {
+  if (req.admin && req.admin.role === 'owner') {
+    next();
+  } else {
+    return res.status(403).json({
+      success: false,
+      message: 'Access Denied: Only the Owner can perform this action.',
+      errors: []
+    });
+  }
+};
+
+module.exports = { protect, isOwner };

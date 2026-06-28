@@ -14,11 +14,20 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  const name = localStorage.getItem('admin_name') || 'Admin User';
+  const role = localStorage.getItem('admin_role') || 'admin';
+
   // Update profile details in sidebar/settings
   document.getElementById('profile-email').textContent = email || 'admin@hangoutcafe.com';
-  document.getElementById('settings-username').textContent = email ? email.split('@')[0] : 'Admin';
-  document.getElementById('settings-avatar').textContent = email ? email.charAt(0).toUpperCase() : 'A';
-  document.getElementById('profile-avatar').textContent = email ? email.charAt(0).toUpperCase() : 'A';
+  document.getElementById('settings-username').textContent = name;
+  document.getElementById('settings-avatar').textContent = name.charAt(0).toUpperCase();
+  document.getElementById('profile-avatar').textContent = name.charAt(0).toUpperCase();
+
+  // If owner, show the Admin Accounts management tab
+  if (role === 'owner') {
+    const sidebarAccounts = document.getElementById('sidebar-accounts');
+    if (sidebarAccounts) sidebarAccounts.style.display = 'block';
+  }
 
   // ===== 2. GLOBALS & STORES =====
   let menuItemsStore = [];
@@ -237,6 +246,9 @@ document.addEventListener('DOMContentLoaded', () => {
         break;
       case 'contact':
         loadContactDetails();
+        break;
+      case 'accounts':
+        loadAdminAccounts();
         break;
     }
   };
@@ -933,6 +945,123 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
+  /* ── 5.9 ADMIN ACCOUNTS CRUD ── */
+  let adminAccountsStore = [];
+
+  const loadAdminAccounts = async () => {
+    const container = document.getElementById('accounts-table-body');
+    container.innerHTML = `<tr><td colspan="5" class="empty-state"><div class="spinner"></div><p style="margin-top:10px;">Loading accounts...</p></td></tr>`;
+
+    const res = await apiCall('/api/admin/accounts');
+    if (!res || !res.ok) {
+      container.innerHTML = `<tr><td colspan="5" class="empty-state">❌ Failed to sync accounts. Only Owner has access.</td></tr>`;
+      return;
+    }
+
+    adminAccountsStore = res.json.data;
+    renderAccountsTable(adminAccountsStore);
+  };
+
+  const renderAccountsTable = (accounts) => {
+    const container = document.getElementById('accounts-table-body');
+    if (accounts.length === 0) {
+      container.innerHTML = `<tr><td colspan="5" class="empty-state">👥 No admin accounts found.</td></tr>`;
+      return;
+    }
+
+    container.innerHTML = '';
+    accounts.forEach(acc => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td style="font-weight: 600; color: white;">${acc.name}</td>
+        <td>${acc.email}</td>
+        <td>
+          <span class="badge ${acc.role === 'owner' ? 'success' : ''}" style="background: ${acc.role === 'owner' ? 'var(--primary-light)' : 'rgba(255,255,255,0.05)'}; color: ${acc.role === 'owner' ? 'var(--primary)' : 'var(--text-secondary)'};">
+            ${acc.role === 'owner' ? 'Owner' : 'Staff Admin'}
+          </span>
+        </td>
+        <td style="color:var(--text-secondary);">${new Date(acc.created_at).toLocaleDateString()}</td>
+        <td>
+          <div class="actions-cell">
+            <button class="btn-secondary-admin" style="padding: 6px 12px; font-size: 0.8rem;" onclick="editAccount('${acc.id}')">Edit ✏️</button>
+            <button class="btn-danger-admin" style="padding: 6px 12px; font-size: 0.8rem;" onclick="triggerDelete('account', '${acc.id}')" ${acc.email === localStorage.getItem('admin_email') ? 'disabled' : ''}>Delete 🗑</button>
+          </div>
+        </td>
+      `;
+      container.appendChild(tr);
+    });
+  };
+
+  // Add account click
+  document.getElementById('btn-add-account').addEventListener('click', () => {
+    document.getElementById('account-id').value = '';
+    document.getElementById('account-modal-title').textContent = 'Create Admin Account';
+    document.getElementById('account-password-label').textContent = 'Password (Required)';
+    document.getElementById('account-password').required = true;
+    document.getElementById('account-password-hint').textContent = 'Must be at least 6 characters.';
+    openModal('account-modal');
+  });
+
+  // Edit account helper
+  window.editAccount = (id) => {
+    const acc = adminAccountsStore.find(a => a.id === id);
+    if (!acc) return;
+
+    document.getElementById('account-id').value = acc.id;
+    document.getElementById('account-name').value = acc.name;
+    document.getElementById('account-email').value = acc.email;
+    document.getElementById('account-role').value = acc.role;
+
+    document.getElementById('account-modal-title').textContent = 'Edit Admin Account';
+    document.getElementById('account-password-label').textContent = 'New Password (Optional)';
+    document.getElementById('account-password').required = false;
+    document.getElementById('account-password-hint').textContent = 'Leave blank to keep the current password.';
+
+    openModal('account-modal');
+  };
+
+  // Account Form submit
+  document.getElementById('account-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const id = document.getElementById('account-id').value;
+    const name = document.getElementById('account-name').value.trim();
+    const email = document.getElementById('account-email').value.trim();
+    const role = document.getElementById('account-role').value;
+    const password = document.getElementById('account-password').value;
+
+    const spinner = document.getElementById('account-form-spinner');
+    const submitBtn = document.getElementById('btn-account-submit');
+
+    submitBtn.disabled = true;
+    spinner.style.display = 'inline-block';
+
+    const payload = { name, email, role };
+    if (password) payload.password = password;
+
+    const url = id ? `/api/admin/accounts/${id}` : '/api/admin/accounts';
+    const method = id ? 'PUT' : 'POST';
+
+    const res = await apiCall(url, {
+      method,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    submitBtn.disabled = false;
+    spinner.style.display = 'none';
+
+    if (res && res.ok) {
+      showToast(id ? 'Account updated successfully!' : 'Admin account created successfully!', 'success');
+      closeModal('account-modal');
+      loadAdminAccounts();
+    } else {
+      showToast(res ? res.json.message : 'Save account failed.', 'error');
+    }
+  });
+
+
   // ===== 6. DELETION HANDLING ORCHESTRATOR =====
   window.triggerDelete = (type, id) => {
     deleteTarget = { type, id };
@@ -941,6 +1070,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (type === 'banner') msg = 'Are you sure you want to delete this slider banner?';
     if (type === 'gallery') msg = 'Are you sure you want to delete this gallery photo?';
     if (type === 'offer') msg = 'Are you sure you want to delete this deal card?';
+    if (type === 'account') msg = 'Are you sure you want to remove this admin account? They will lose access to the dashboard.';
 
     document.getElementById('confirm-message').textContent = msg;
     openModal('confirm-modal');
@@ -955,6 +1085,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (type === 'banner') url = `/api/banner/${id}`;
     if (type === 'gallery') url = `/api/gallery/${id}`;
     if (type === 'offer') url = `/api/offers/${id}`;
+    if (type === 'account') url = `/api/admin/accounts/${id}`;
 
     closeModal('confirm-modal');
     showToast('Deleting item...', 'warning');
@@ -970,6 +1101,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (type === 'banner') loadBanners();
       if (type === 'gallery') loadGallery();
       if (type === 'offer') loadOffers();
+      if (type === 'account') loadAdminAccounts();
     } else {
       showToast(res ? res.json.message : 'Deletion failed.', 'error');
     }
@@ -982,6 +1114,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const executeLogout = () => {
     localStorage.removeItem('admin_token');
     localStorage.removeItem('admin_email');
+    localStorage.removeItem('admin_name');
+    localStorage.removeItem('admin_role');
     showToast('Logging out...', 'success');
     setTimeout(() => { window.location.href = 'login.html'; }, 1000);
   };

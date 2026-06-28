@@ -244,6 +244,8 @@
             // Store token and details securely
             localStorage.setItem('admin_token', data.data.token);
             localStorage.setItem('admin_email', data.data.admin.email);
+            localStorage.setItem('admin_name', data.data.admin.name || 'Admin');
+            localStorage.setItem('admin_role', data.data.admin.role || 'admin');
             
             setTimeout(() => {
               window.location.href = 'index.html';

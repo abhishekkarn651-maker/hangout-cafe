@@ -4,8 +4,10 @@
 -- 1. Admins Table
 CREATE TABLE IF NOT EXISTS admins (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name TEXT DEFAULT 'Admin' NOT NULL,
     email TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
+    role TEXT DEFAULT 'admin' NOT NULL,
     created_at TIMESTAMPTZ DEFAULT now() NOT NULL
 );
 

@@ -14,7 +14,7 @@ const loginAdmin = async (req, res, next) => {
     // Check for admin email in Supabase
     const { data: admin, error } = await supabase
       .from('admins')
-      .select('id, email, password')
+      .select('id, name, email, role, password')
       .eq('email', email.toLowerCase().trim())
       .maybeSingle();
 
@@ -55,7 +55,9 @@ const loginAdmin = async (req, res, next) => {
         token,
         admin: {
           id: admin.id,
-          email: admin.email
+          name: admin.name,
+          email: admin.email,
+          role: admin.role
         }
       }
     });

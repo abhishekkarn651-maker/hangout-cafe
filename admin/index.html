@@ -53,6 +53,10 @@
           <span class="menu-icon">⚙️</span>
           <span>Settings</span>
         </a>
+        <a class="menu-item" data-tab="accounts" id="sidebar-accounts" style="display: none;">
+          <span class="menu-icon">👥</span>
+          <span>Admin Accounts</span>
+        </a>
       </nav>
       <div class="sidebar-footer">
         <div class="user-profile">
@@ -420,6 +424,40 @@
           </div>
         </section>
 
+        <!-- ==================== TAB: ADMIN ACCOUNTS ==================== -->
+        <section class="tab-content" id="tab-accounts">
+          <div class="widget-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:15px;">
+              <div>
+                <h3 class="widget-title" style="margin-bottom: 5px;">Manage Admin Accounts</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Create, update, or remove trusted admin accounts for staff members.</p>
+              </div>
+              <button class="btn-primary-admin" id="btn-add-account">
+                <span>+ Create Account</span>
+              </button>
+            </div>
+
+            <div class="data-table-wrapper">
+              <table class="data-table" id="accounts-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="accounts-table-body">
+                  <tr>
+                    <td colspan="5" class="empty-state">Loading accounts...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
       </main>
     </div>
   </div>
@@ -624,6 +662,48 @@
           <button type="submit" class="btn-primary-admin" id="btn-offer-submit">
             <span>Save Offer</span>
             <div class="spinner" id="offer-form-spinner" style="display:none; width:16px; height:16px;"></div>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Admin Account Form -->
+  <div class="modal-overlay" id="account-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="account-modal-title">Create Admin Account</h3>
+        <button class="modal-close" onclick="closeModal('account-modal')">&times;</button>
+      </div>
+      <form id="account-form">
+        <input type="hidden" id="account-id">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="account-name">Full Name</label>
+            <input type="text" id="account-name" required placeholder="John Doe">
+          </div>
+          <div class="form-group">
+            <label for="account-email">Email Address</label>
+            <input type="email" id="account-email" required placeholder="john@hangoutcafe.com">
+          </div>
+          <div class="form-group">
+            <label for="account-role">Role</label>
+            <select id="account-role" required>
+              <option value="admin">Admin (Staff)</option>
+              <option value="owner">Owner (Full access)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="account-password" id="account-password-label">Password</label>
+            <input type="password" id="account-password" placeholder="Min 6 characters">
+            <small style="color:var(--text-secondary); margin-top:4px;" id="account-password-hint"></small>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary-admin" onclick="closeModal('account-modal')">Cancel</button>
+          <button type="submit" class="btn-primary-admin" id="btn-account-submit">
+            <span>Save Account</span>
+            <div class="spinner" id="account-form-spinner" style="display:none; width:16px; height:16px;"></div>
           </button>
         </div>
       </form>
