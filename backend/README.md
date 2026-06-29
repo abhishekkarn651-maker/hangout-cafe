@@ -103,7 +103,7 @@ npm start
 ## Modular Image Upload System
 
 The backend features a modular upload service:
-1. **Local Mode (`USE_CLOUDINARY=false`)**: Multer parses form-data, saves images to the `backend/uploads/` directory, and the API stores a relative URL (e.g., `/uploads/image-16789012.png`) in Supabase. The Express server serves these images statically via `http://localhost:5000/uploads/...`.
+1. **Local Mode (`USE_CLOUDINARY=false`)**: Multer parses form-data, saves images to the `backend/uploads/` directory, and the API stores a relative URL (e.g., `/uploads/image-16789012.png`) in Supabase. The Express server serves these images statically via `hhttps://hangout-cafe-backend.onrender.com/uploads/...`.
 2. **Cloudinary Mode (`USE_CLOUDINARY=true`)**: Multer processes files locally, the `uploadService` automatically uploads them to Cloudinary, deletes the local file, and stores the Cloudinary secure URL (e.g., `https://res.cloudinary.com/...`) in Supabase.
 3. **Deletions**: Deleting documents (Banner, Menu, Gallery, Offers, etc.) automatically triggers the `deleteImage(url)` helper, which deletes the file from local storage or from Cloudinary (using its public ID).
 

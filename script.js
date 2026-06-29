@@ -405,7 +405,7 @@
      ==================================================== */
   const syncDynamicContent = async () => {
     const API_BASE_URL = "https://hangout-cafe-backend.onrender.com";
-      ? 'http://localhost:5000'
+      ? 'https://hangout-cafe-backend.onrender.com'
       : '';
 
     try {
