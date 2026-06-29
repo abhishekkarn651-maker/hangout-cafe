@@ -44,9 +44,12 @@ app.use((req, res, next) => {
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
+const autoCreateTables = require('./utils/autoCreateTables');
 
-const server = app.listen(PORT, () => {
+const server = app.listen(PORT, async () => {
   console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
+  // Automatically check and create tables if missing
+  await autoCreateTables();
 });
 
 // Handle unhandled promise rejections
