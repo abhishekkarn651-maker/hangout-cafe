@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const API_BASE_URL = window.location.origin.includes('5000') 
     ? '' 
-    : 'http://localhost:5000';
+    : 'https://hangout-cafe-backend.onrender.com';
 
   // API Call helper
   const apiCall = async (url, options = {}) => {
