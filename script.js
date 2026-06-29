@@ -404,7 +404,7 @@
      10. SUPABASE DATABASE ENDPOINT SYNC (DYNAMIC CONTENT)
      ==================================================== */
   const syncDynamicContent = async () => {
-    const API_BASE_URL = window.location.origin.startsWith('file:') || !window.location.origin.includes('5000')
+    const API_BASE_URL = "https://hangout-cafe-backend.onrender.com";
       ? 'http://localhost:5000'
       : '';
 
